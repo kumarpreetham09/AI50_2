@@ -60,33 +60,34 @@ def load_data(filename):
     is 1 if Revenue is true, and 0 otherwise.
     """
     with open(filename) as f:
-        reader = csv.DictReader(f)
+        reader = csv.reader(f)
         next(reader)
+
         labels = []
         evidence = []
         month_dict = {"Jan" : 0, "Feb" : 1, "Mar" : 2, "Apr" : 3, "May" : 4, "June" : 5, "Jul" : 6, "Aug" : 7, "Sep" : 8, "Oct" : 9, "Nov" : 10, "Dec" : 11}
-        for row in reader:
+        for row in reader:         
             evidence.append([
-                int(row["Administrative"]),
-                float(row["Administrative_Duration"]),
-                int(row["Informational"]),
-                float(row["Informational_Duration"]),
-                int(row["ProductRelated"]),
-                float(row["ProductRelated_Duration"]),
-                float(row["BounceRates"]),
-                float(row["ExitRates"]),
-                float(row["PageValues"]),
-                float(row["SpecialDay"]),
-                int(month_dict[str(row["Month"])]),
-                int(row["OperatingSystems"]),
-                int(row["Browser"]),
-                int(row["Region"]),
-                int(row["TrafficType"]),
-                0 if row["VisitorType"] == "New_Visitor" else 1,
-                0 if row["Weekend"] == "FALSE" else 1,
+                int(row[0]),
+                float(row[1]),
+                int(row[2]),
+                float(row[3]),
+                int(row[4]),
+                float(row[5]),
+                float(row[6]),
+                float(row[7]),
+                float(row[8]),
+                float(row[9]),
+                int(month_dict[str(row[10])]),
+                int(row[11]),
+                int(row[12]),
+                int(row[13]),
+                int(row[14]),
+                1 if row[15] == "Returning_Visitor" else 0,
+                1 if row[16] == "TRUE" else 0,
             ])
 
-            if row["Revenue"] == "TRUE":
+            if row[17] == "TRUE":
                 labels.append(1)
             else:
                 labels.append(0)
