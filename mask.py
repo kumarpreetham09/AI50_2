@@ -51,7 +51,7 @@ def get_mask_token_index(mask_token_id, inputs):
         j += 1
         if i == mask_token_id:
             return j
-        
+
     return None
 
 
